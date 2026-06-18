@@ -1,0 +1,580 @@
+/* ───────────────────────────────────────────────────────
+ * Chapter 03 · handshake-why
+ * CSS prefix: .hw-
+ * ─────────────────────────────────────────────────────── */
+
+.hw-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-body);
+  color: var(--text);
+  padding: var(--stage-pad-y) var(--stage-pad-x);
+  box-sizing: border-box;
+}
+
+/* ── step 0 — hero ── */
+.hw-step-0 {
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+}
+
+.hw-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  animation: hw-hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hw-section-tag {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.hw-main-title {
+  font-family: var(--font-display-cn);
+  font-size: 340px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1;
+  text-shadow: 0 0 100px var(--accent-glow), 0 0 60px var(--accent-soft);
+}
+
+.hw-hook-line {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-display-cn);
+  font-size: 60px;
+  font-weight: 300;
+  color: var(--text-2);
+  letter-spacing: 0.08em;
+  margin-top: 16px;
+}
+
+.hw-hook-q {
+  font-family: var(--font-display-en);
+  font-size: 80px;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.hw-corner-info {
+  position: absolute;
+  bottom: 64px;
+  right: 96px;
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+}
+
+/* ── step 1 — one handshake fail ── */
+.hw-step-1 {
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+  gap: 64px;
+}
+
+.hw-step-label {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  align-self: flex-start;
+  opacity: 0;
+  animation: hw-fade-in 0.4s ease forwards;
+}
+
+.hw-scene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  width: 100%;
+}
+
+/* Nodes */
+.hw-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hw-node-box {
+  width: 200px;
+  height: 140px;
+  background: var(--surface);
+  border: 3px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hw-node-name {
+  font-family: var(--font-display-cn);
+  font-size: 36px;
+  color: var(--text);
+}
+
+.hw-node-state {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-mute);
+  letter-spacing: 0.12em;
+}
+
+.hw-node-label-top {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+}
+
+/* Arrow zone */
+.hw-arrow-zone {
+  position: relative;
+  flex: 1;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hw-arrow-track {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.hw-arrow-line {
+  position: absolute;
+  height: 4px;
+  background: var(--accent);
+}
+
+.hw-arrow-s1-lost {
+  width: 380px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 14px,
+    transparent 14px,
+    transparent 24px
+  );
+  opacity: 0.5;
+  animation: hw-dash-fade 1.2s ease-in-out infinite;
+}
+
+.hw-arrow-head {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.hw-arrow-head-r {
+  right: 0;
+  border-left: 20px solid var(--accent);
+}
+
+.hw-arrow-head-lost {
+  opacity: 0.4;
+}
+
+/* Lost packet */
+.hw-packet {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 20px;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+  font-family: var(--font-mono);
+}
+
+.hw-packet-s1-lost {
+  left: calc(50% - 180px);
+  border-style: dashed;
+  opacity: 0.6;
+  animation: hw-packet-fade 1.2s ease-in-out infinite;
+}
+
+.hw-packet-label {
+  font-size: 22px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+.hw-packet-seq {
+  font-size: 18px;
+  color: var(--text-mute);
+}
+
+/* X mark */
+.hw-lost-x {
+  position: absolute;
+  left: calc(50% + 20px);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  color: #e05050;
+  animation: hw-x-pulse 0.8s ease-in-out infinite alternate;
+}
+
+/* Problem card */
+.hw-problem-card {
+  width: 560px;
+  background: var(--surface);
+  border: 3px solid rgba(210, 80, 80, 0.5);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  animation: hw-card-rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.hw-problem-title {
+  font-family: var(--font-display-cn);
+  font-size: 48px;
+  font-weight: 600;
+  color: #e05050;
+}
+
+.hw-problem-desc {
+  font-family: var(--font-body);
+  font-size: 26px;
+  color: var(--text-2);
+  line-height: 1.6;
+}
+
+/* ── step 2 — two handshakes, ACK lost ── */
+.hw-step-2 {
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+  gap: 56px;
+}
+
+.hw-arrow-zone {
+  position: relative;
+  flex: 1;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hw-arrow-track--up {
+  top: 60px;
+  transform: none;
+  left: 0;
+  width: 100%;
+}
+
+.hw-arrow-track--dn {
+  bottom: 60px;
+  transform: none;
+  left: 0;
+  width: 100%;
+}
+
+.hw-arrow-track--3rd {
+  top: 140px;
+  transform: none;
+  left: 0;
+  width: 100%;
+}
+
+.hw-arrow-s2 {
+  width: 360px;
+  left: calc(50% - 180px);
+  animation: hw-dash-flow 0.8s linear infinite;
+}
+
+.hw-arrow-r2-lost {
+  width: 360px;
+  left: calc(50% - 180px);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 14px,
+    transparent 14px,
+    transparent 24px
+  );
+  opacity: 0.5;
+  animation: hw-dash-fade 1.2s ease-in-out infinite;
+}
+
+.hw-arrow-head-l {
+  border-right: 20px solid var(--accent);
+  border-left: none;
+  left: 0;
+}
+
+.hw-packet-s2 {
+  left: calc(50% - 90px);
+}
+
+.hw-packet-r2-lost {
+  left: calc(50% - 90px);
+  border-style: dashed;
+  opacity: 0.6;
+}
+
+.hw-packet-desc {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-mute);
+  white-space: nowrap;
+}
+
+.hw-packet-desc-r {
+  right: calc(50% + 100px);
+  top: 20px;
+}
+
+.hw-packet-desc-l {
+  left: calc(50% + 100px);
+  bottom: 20px;
+}
+
+.hw-packet-desc-lost {
+  color: rgba(210, 80, 80, 0.7);
+  font-style: italic;
+}
+
+/* Server wait state */
+.hw-node-box--wait {
+  border-color: rgba(210, 180, 100, 0.5);
+}
+
+.hw-node-state--wait {
+  color: #f0a040;
+  animation: hw-blink 1s ease-in-out infinite;
+}
+
+.hw-wait-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.hw-timer-bar {
+  width: 160px;
+  height: 6px;
+  background: var(--surface-3);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  position: relative;
+}
+
+.hw-timer-bar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #f0a040;
+  animation: hw-timer-grow 3s ease-in-out infinite;
+}
+
+.hw-timer-bar--1::after { animation-delay: 0s; }
+.hw-timer-bar--2::after { animation-delay: 1s; }
+.hw-timer-bar--3::after { animation-delay: 2s; }
+
+.hw-timer-label {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: #f0a040;
+  letter-spacing: 0.1em;
+}
+
+/* step 2 packet */
+.hw-packet-s3 {
+  left: calc(50% - 90px);
+}
+
+.hw-packet-r3 {
+  left: calc(50% - 90px);
+}
+
+.hw-packet-s3-ack {
+  left: calc(50% - 90px);
+}
+
+/* Arrow heads */
+.hw-arrow-head--muted {
+  opacity: 0.5;
+}
+
+/* ── step 3 — three correct ── */
+.hw-step-3 {
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+  gap: 48px;
+}
+
+.hw-arrow-s3 {
+  width: 340px;
+  left: calc(50% - 170px);
+  animation: hw-dash-flow 0.8s linear infinite;
+}
+
+.hw-arrow-r3 {
+  width: 340px;
+  left: calc(50% - 170px);
+  animation: hw-dash-flow-return 0.8s linear infinite;
+}
+
+.hw-arrow-s3-ack {
+  width: 340px;
+  left: calc(50% - 170px);
+  animation: hw-dash-flow 0.8s linear infinite;
+}
+
+/* Node OK states */
+.hw-node-box--ok {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px var(--accent-soft);
+}
+
+.hw-node-state--ok {
+  color: var(--accent);
+}
+
+/* Connected banner */
+.hw-connected-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-display-cn);
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--accent);
+  opacity: 0;
+  animation: hw-fade-up 0.5s ease 0.3s forwards;
+}
+
+.hw-connected-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--accent);
+}
+
+.hw-connected-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Confirm row */
+.hw-confirm-row {
+  display: flex;
+  gap: 48px;
+  opacity: 0;
+  animation: hw-fade-up 0.5s ease 0.6s forwards;
+}
+
+.hw-confirm-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-body);
+  font-size: 26px;
+  color: var(--text-2);
+}
+
+.hw-confirm-check {
+  width: 32px;
+  height: 32px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.hw-confirm-check svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Animations ── */
+@keyframes hw-hero-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hw-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes hw-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hw-card-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hw-dash-flow {
+  from { background-position: 0 0; }
+  to   { background-position: 24px 0; }
+}
+
+@keyframes hw-dash-flow-return {
+  from { background-position: 24px 0; }
+  to   { background-position: 0 0; }
+}
+
+@keyframes hw-dash-fade {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes hw-packet-fade {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 0.2; }
+}
+
+@keyframes hw-x-pulse {
+  from { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  to   { opacity: 1;   transform: translate(-50%, -50%) scale(1.15); }
+}
+
+@keyframes hw-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes hw-timer-grow {
+  0%   { width: 0; }
+  100% { width: 100%; }
+}

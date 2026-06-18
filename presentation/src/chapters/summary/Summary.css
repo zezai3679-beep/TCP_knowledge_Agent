@@ -1,0 +1,118 @@
+/* ───────────────────────────────────────────────────────
+ * Chapter 07 · summary
+ * CSS prefix: .sm-
+ * ─────────────────────────────────────────────────────── */
+
+.sm-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-body);
+  color: var(--text);
+  padding: var(--stage-pad-y) var(--stage-pad-x);
+  box-sizing: border-box;
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+}
+
+.sm-corner-tag {
+  position: absolute;
+  bottom: 56px;
+  right: 80px;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+}
+
+/* ── step 0 — takeaways ── */
+.sm-step-0 {
+  gap: 64px;
+}
+
+.sm-takeaway-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  animation: sm-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sm-takeaway-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.sm-takeaway-text {
+  font-family: var(--font-display-cn);
+  font-size: 96px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 40px var(--accent-glow);
+  line-height: 1;
+}
+
+.sm-takeaway-sub {
+  font-family: var(--font-body);
+  font-size: 36px;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+}
+
+.sm-divider {
+  width: 200px;
+  height: 3px;
+  background: var(--rule);
+}
+
+/* ── step 1 — golden closing ── */
+.sm-step-1 {
+  gap: 48px;
+}
+
+.sm-golden-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: sm-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.sm-golden-text {
+  font-family: var(--font-display-cn);
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 40px var(--accent-glow);
+  line-height: 1.2;
+  text-align: center;
+  animation: sm-glow-pulse 2.4s ease-in-out infinite;
+}
+
+.sm-golden-sub {
+  font-family: var(--font-body);
+  font-size: 40px;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* ── Animations ── */
+@keyframes sm-fade-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sm-glow-pulse {
+  0%, 100% { text-shadow: 0 0 40px var(--accent-glow); }
+  50%       { text-shadow: 0 0 60px var(--accent-glow), 0 0 100px var(--accent-soft); }
+}

@@ -1,0 +1,685 @@
+/* ───────────────────────────────────────────────────────
+ * Chapter 06 · interview-qa
+ * CSS prefix: .iq-
+ * ─────────────────────────────────────────────────────── */
+
+.iq-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-body);
+  color: var(--text);
+  padding: var(--stage-pad-y) var(--stage-pad-x);
+  box-sizing: border-box;
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+}
+
+.iq-corner-info {
+  position: absolute;
+  bottom: 56px;
+  right: 80px;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+}
+
+/* ── step 0 — title ── */
+.iq-step-0 {
+  gap: 48px;
+}
+
+.iq-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  animation: iq-hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.iq-section-tag {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  animation: iq-fade-in 0.4s ease forwards;
+}
+
+.iq-main-title {
+  font-family: var(--font-display-cn);
+  font-size: 200px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 60px var(--accent-glow);
+  line-height: 1;
+}
+
+.iq-subtitle {
+  font-family: var(--font-display-cn);
+  font-size: 60px;
+  font-weight: 300;
+  color: var(--text-2);
+  letter-spacing: 0.08em;
+  animation: iq-fade-up 0.6s ease 0.3s both;
+}
+
+/* ── Q card (shared big card) ── */
+.iq-card {
+  width: 900px;
+  min-height: 560px;
+  background: var(--surface);
+  border: 4px solid var(--rule);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 56px 64px;
+  gap: 40px;
+  position: relative;
+  box-shadow: 0 0 80px rgba(0,0,0,0.5), 0 0 0 1px var(--rule);
+  animation: iq-card-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes iq-card-in {
+  from { opacity: 0; transform: translateY(30px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.iq-q-badge {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  color: var(--shell);
+  background: var(--accent);
+  padding: 8px 28px;
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  align-self: flex-start;
+}
+
+.iq-q-title {
+  font-family: var(--font-display-cn);
+  font-size: 60px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.iq-q-divider {
+  width: 120px;
+  height: 3px;
+  background: var(--rule);
+  border-radius: 2px;
+}
+
+.iq-q-explain {
+  font-family: var(--font-body);
+  font-size: 32px;
+  color: var(--text-2);
+  line-height: 1.8;
+  text-align: center;
+  max-width: 600px;
+}
+
+/* ── step 1 — SYN超时动画 ── */
+.iq-step-1 {
+  gap: 32px;
+}
+
+.iq-syn-scene {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.iq-node-box {
+  width: 180px;
+  height: 120px;
+  background: var(--surface-2);
+  border: 3px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.iq-node-name {
+  font-family: var(--font-display-cn);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.iq-node-state {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-mute);
+}
+
+.iq-arrow-zone {
+  flex: 1;
+  height: 160px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 380px;
+}
+
+/* SYN packets */
+.iq-syn-packet {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 3px solid var(--accent);
+  padding: 12px 20px;
+}
+
+.iq-syn-packet-old {
+  top: 20px;
+  opacity: 0.5;
+  animation: iq-syn-slide-old 2.5s ease-in-out infinite;
+}
+
+.iq-syn-packet-new {
+  top: 80px;
+  animation: iq-syn-slide-new 2.5s ease-in-out 0.8s infinite;
+}
+
+@keyframes iq-syn-slide-old {
+  0%   { left: 0; opacity: 0; }
+  10%  { opacity: 0.6; }
+  50%  { left: 50%; transform: translateX(-50%); opacity: 0.6; }
+  60%  { opacity: 0; }
+  100% { left: 50%; opacity: 0; transform: translateX(-50%); }
+}
+
+@keyframes iq-syn-slide-new {
+  0%   { left: 0; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { left: 50%; transform: translateX(-50%); opacity: 1; }
+  60%  { opacity: 0; }
+  100% { left: 50%; opacity: 0; transform: translateX(-50%); }
+}
+
+.iq-packet-label {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.iq-packet-seq {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-mute);
+}
+
+.iq-packet-note {
+  position: absolute;
+  top: -36px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.iq-server-confused {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-mute);
+  text-align: center;
+  line-height: 1.4;
+  opacity: 0;
+  animation: iq-confused-appear 0.4s ease 1.5s forwards;
+}
+
+@keyframes iq-confused-appear {
+  to { opacity: 1; }
+}
+
+/* ── step 2 — 全双工 ── */
+.iq-step-2 {
+  gap: 32px;
+}
+
+.iq-duplex-scene {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.iq-duplex-node {
+  width: 200px;
+  height: 130px;
+  background: var(--surface-2);
+  border: 3px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.iq-duplex-name {
+  font-family: var(--font-display-cn);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.iq-duplex-state {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--text-mute);
+}
+
+.iq-duplex-arrows {
+  flex: 1;
+  height: 160px;
+  position: relative;
+  max-width: 320px;
+}
+
+/* Dual arrows — top (A→B) */
+.iq-arrow-top {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 14px,
+    transparent 14px,
+    transparent 22px
+  );
+  animation: iq-dash-flow 0.5s linear infinite;
+}
+
+.iq-arrow-top::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -8px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 16px solid var(--accent);
+}
+
+/* Dual arrows — bottom (B→A) */
+.iq-arrow-bottom {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 14px,
+    transparent 14px,
+    transparent 22px
+  );
+  animation: iq-dash-flow 0.5s linear infinite reverse;
+}
+
+.iq-arrow-bottom::after {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: -8px;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 16px solid var(--accent);
+}
+
+@keyframes iq-dash-flow {
+  from { background-position: 0 0; }
+  to   { background-position: 22px 0; }
+}
+
+.iq-duplex-labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20px;
+}
+
+.iq-duplex-label-text {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--accent);
+  text-align: center;
+}
+
+/* ── step 3 — SYN洪水攻击 ── */
+.iq-step-3 {
+  gap: 32px;
+}
+
+.iq-attack-scene {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+}
+
+.iq-attackers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.iq-attacker-label {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-mute);
+  margin-bottom: 8px;
+}
+
+.iq-attacker-node {
+  width: 120px;
+  height: 80px;
+  background: var(--surface);
+  border: 2px solid var(--text-mute);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  opacity: 0.6;
+}
+
+.iq-attacker-name {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--text-mute);
+}
+
+/* SYN flood wave */
+.iq-syn-wave {
+  position: absolute;
+  left: 140px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.iq-syn-wave-item {
+  height: 20px;
+  background: var(--accent);
+  border-radius: 4px;
+  opacity: 0;
+  animation: iq-syn-wave-flow 1.5s ease-out infinite;
+}
+
+.iq-syn-wave-item:nth-child(1) { width: 60px;  animation-delay: 0s;    }
+.iq-syn-wave-item:nth-child(2) { width: 80px;  animation-delay: 0.15s; }
+.iq-syn-wave-item:nth-child(3) { width: 50px;  animation-delay: 0.3s;  }
+.iq-syn-wave-item:nth-child(4) { width: 90px;  animation-delay: 0.45s; }
+.iq-syn-wave-item:nth-child(5) { width: 70px;  animation-delay: 0.6s;  }
+.iq-syn-wave-item:nth-child(6) { width: 100px; animation-delay: 0.75s; }
+.iq-syn-wave-item:nth-child(7) { width: 55px;  animation-delay: 0.9s;  }
+.iq-syn-wave-item:nth-child(8) { width: 85px;  animation-delay: 1.05s; }
+
+@keyframes iq-syn-wave-flow {
+  0%   { opacity: 0; transform: translateX(0); }
+  20%  { opacity: 0.9; }
+  80%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(80px); }
+}
+
+/* Server half-open stack */
+.iq-server-half {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.iq-server-node-wrap {
+  position: relative;
+}
+
+.iq-server-half-open {
+  width: 180px;
+  min-height: 110px;
+  background: var(--surface-2);
+  border: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  box-shadow: 0 0 30px var(--accent-soft);
+}
+
+.iq-server-name {
+  font-family: var(--font-display-cn);
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.iq-server-state {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--accent);
+}
+
+.iq-half-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.iq-half-item {
+  width: 50px;
+  height: 18px;
+  background: var(--accent);
+  opacity: 0.4;
+  border-radius: 3px;
+  animation: iq-half-grow 0.3s ease forwards;
+}
+
+@keyframes iq-half-grow {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 0.4; transform: scaleX(1); }
+}
+
+/* SYN Cookie defense */
+.iq-defense-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.iq-defense-label {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+}
+
+.iq-defense-badge {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--shell);
+  background: var(--accent);
+  padding: 8px 28px;
+  border-radius: 100px;
+  letter-spacing: 0.08em;
+  animation: iq-defense-pulse 2s ease-in-out infinite;
+}
+
+@keyframes iq-defense-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-soft); }
+  50%       { box-shadow: 0 0 0 12px transparent; }
+}
+
+/* ── step 4 — TIME_WAIT 2MSL ── */
+.iq-step-4 {
+  gap: 32px;
+}
+
+.iq-msl-scene {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.iq-msl-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.iq-msl-circle {
+  width: 280px;
+  height: 280px;
+  border: 5px solid var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  box-shadow: 0 0 60px var(--accent-soft), inset 0 0 40px var(--accent-soft);
+  position: relative;
+}
+
+.iq-msl-circle::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 2px solid var(--rule);
+  border-radius: 50%;
+}
+
+.iq-msl-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: iq-msl-pulse 2s ease-in-out infinite;
+}
+
+.iq-msl-number {
+  font-family: var(--font-mono);
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  text-shadow: 0 0 30px var(--accent-glow);
+}
+
+.iq-msl-label {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-2);
+  letter-spacing: 0.15em;
+}
+
+.iq-msl-sublabel {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+}
+
+@keyframes iq-msl-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.03); }
+}
+
+.iq-msl-caption {
+  font-family: var(--font-body);
+  font-size: 36px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.iq-msl-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.iq-msl-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.iq-msl-row-label {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+}
+
+.iq-msl-row-value {
+  font-family: var(--font-body);
+  font-size: 28px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.iq-msl-arrow {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  color: var(--accent);
+  text-align: center;
+}
+
+/* ── Animations ── */
+@keyframes iq-hero-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes iq-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes iq-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

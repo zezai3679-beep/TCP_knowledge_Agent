@@ -1,0 +1,423 @@
+/* ───────────────────────────────────────────────────────
+ * Chapter 02 · handshake-three
+ * CSS prefix: .ht-
+ * ─────────────────────────────────────────────────────── */
+
+.ht-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: var(--font-body);
+  color: var(--text);
+  padding: var(--stage-pad-y) var(--stage-pad-x);
+  box-sizing: border-box;
+  background: var(--shell);
+  background-image: var(--surface-pattern);
+  background-size: var(--surface-pattern-size);
+}
+
+/* ── shared ── */
+.ht-corner-info {
+  position: absolute;
+  bottom: 56px;
+  right: 80px;
+  font-family: var(--font-mono);
+  font-size: 20px;
+  color: var(--text-faint);
+  letter-spacing: 0.12em;
+}
+
+/* ── step 0 — title ── */
+.ht-step-0 {
+  gap: 48px;
+}
+
+.ht-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  animation: ht-hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.ht-section-tag {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  animation: ht-fade-in 0.4s ease forwards;
+}
+
+.ht-main-title {
+  font-family: var(--font-display-cn);
+  font-size: 180px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 60px var(--accent-glow);
+  line-height: 1;
+}
+
+.ht-hook-line {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  animation: ht-fade-up 0.6s ease 0.3s both;
+}
+
+.ht-hook-q {
+  font-family: var(--font-display-en);
+  font-size: 120px;
+  font-weight: 300;
+  color: var(--text-mute);
+  line-height: 1;
+}
+
+.ht-hook-text {
+  font-family: var(--font-display-cn);
+  font-size: 60px;
+  font-weight: 300;
+  color: var(--text-2);
+  letter-spacing: 0.05em;
+}
+
+/* ── step 1 — SYN sent ── */
+.ht-step-1 {
+  gap: 48px;
+  justify-content: center;
+}
+
+.ht-step-label {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: 0.15em;
+  align-self: flex-start;
+  animation: ht-fade-in 0.4s ease forwards;
+}
+
+.ht-scene {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 0;
+}
+
+/* Node boxes */
+.ht-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.ht-node-box {
+  width: 320px;
+  height: 210px;
+  background: var(--surface-2);
+  border: 4px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  position: relative;
+}
+
+.ht-node-box--ok {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px var(--accent-soft), inset 0 0 0 3px var(--accent-soft);
+}
+
+.ht-node-name {
+  font-family: var(--font-display-cn);
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.05em;
+}
+
+.ht-node-state {
+  font-family: var(--font-mono);
+  font-size: 26px;
+  color: var(--text-mute);
+  letter-spacing: 0.1em;
+}
+
+.ht-node-state--ok {
+  color: var(--accent);
+  text-shadow: 0 0 14px var(--accent-glow);
+}
+
+.ht-node-label-top {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+}
+
+/* Arrow zone */
+.ht-arrow-zone {
+  flex: 1;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 600px;
+}
+
+/* Packet */
+.ht-packet {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 4px solid var(--accent);
+  padding: 16px 28px;
+  animation: ht-packet-slide 1.8s ease-in-out forwards;
+}
+
+.ht-packet-label {
+  font-family: var(--font-mono);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.ht-packet-seq {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--text-mute);
+}
+
+.ht-packet-desc {
+  position: absolute;
+  top: -40px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.ht-packet-desc-r {
+  right: 0;
+  transform: translateX(110%);
+}
+
+.ht-packet-desc-l {
+  left: 0;
+  transform: translateX(-110%);
+}
+
+/* Step 1 packet slides right */
+.ht-packet-s1 {
+  animation: ht-packet-right 2s ease-in-out forwards;
+}
+
+.ht-packet-s1-fade {
+  opacity: 0.25;
+  animation: none;
+}
+
+@keyframes ht-packet-right {
+  0%   { left: 5%; opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { left: 65%; }
+  100% { left: 65%; opacity: 1; }
+}
+
+/* Arrow line */
+.ht-arrow-line {
+  position: absolute;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 14px,
+    transparent 14px,
+    transparent 22px
+  );
+}
+
+.ht-arrow-s1 {
+  width: 55%;
+  left: 22%;
+  top: 50%;
+  animation: ht-dash-flow 0.6s linear infinite;
+}
+
+.ht-arrow-head {
+  position: absolute;
+  top: -7px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.ht-arrow-head-r {
+  border-left: 18px solid var(--accent);
+  right: 20%;
+  top: calc(50% - 10px);
+}
+
+.ht-arrow-head-l {
+  border-right: 18px solid var(--accent);
+  left: 20%;
+  top: calc(50% - 10px);
+}
+
+/* Explain bar */
+.ht-explain-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-body);
+  font-size: 36px;
+  color: var(--text-2);
+  animation: ht-fade-up 0.5s ease 0.6s both;
+  opacity: 0;
+}
+
+.ht-exp-icon {
+  font-family: var(--font-display-en);
+  font-size: 36px;
+  color: var(--accent);
+}
+
+/* ── step 2 — SYN+ACK ── */
+.ht-step-2 {
+  gap: 48px;
+  justify-content: center;
+}
+
+.ht-arrow-return {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ht-arrow-r2 {
+  width: 70%;
+  left: 15%;
+  top: 50%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 14px,
+    transparent 14px,
+    transparent 22px
+  );
+  animation: ht-dash-flow 0.6s linear infinite reverse;
+  height: 3px;
+}
+
+.ht-packet-r2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: ht-packet-appear 0.8s ease 0.4s both;
+}
+
+@keyframes ht-packet-appear {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* ── step 3 — ACK sent, connected ── */
+.ht-step-3 {
+  gap: 40px;
+  justify-content: center;
+}
+
+.ht-packet-s3 {
+  animation: ht-packet-right-3 2s ease-in-out forwards;
+}
+
+@keyframes ht-packet-right-3 {
+  0%   { left: 5%; opacity: 0; }
+  15%  { opacity: 1; }
+  50%  { left: 65%; }
+  100% { left: 65%; opacity: 1; }
+}
+
+.ht-arrow-s3 {
+  width: 55%;
+  left: 22%;
+  top: 50%;
+  animation: ht-dash-flow 0.6s linear infinite;
+}
+
+/* Connected banner */
+.ht-connected-banner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--accent-soft);
+  border: 4px solid var(--accent);
+  padding: 24px 60px;
+  animation: ht-connected-pop 0.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
+}
+
+.ht-connected-icon {
+  width: 60px;
+  height: 60px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.ht-connected-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ht-connected-banner span {
+  font-family: var(--font-display-cn);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 24px var(--accent-glow);
+}
+
+@keyframes ht-connected-pop {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Animations ── */
+@keyframes ht-hero-in {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ht-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ht-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ht-dash-flow {
+  from { background-position: 0 0; }
+  to   { background-position: 22px 0; }
+}

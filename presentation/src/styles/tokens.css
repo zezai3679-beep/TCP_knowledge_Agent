@@ -1,0 +1,62 @@
+/* ─────────────────────────────────────────────────────────────────────
+ * Theme · blueprint → KHAKI BRIGHT (custom override)
+ *   Warm khaki/cream palette with high contrast — brighter, warmer, larger.
+ *
+ *   character knobs:
+ *     • hero numbers   — khaki cream, bold mono
+ *     • rule           — 2px SOLID warm amber
+ *     • card           — 2px solid border, 0 radius
+ *     • surface        — warm grid overlay
+ *     • motion         — slightly slower, warmer
+ * ───────────────────────────────────────────────────────────────────── */
+:root {
+  /* ─── palette — warm khaki / cream / amber ─── */
+  --shell:        #2c2416;
+  --surface:      #3a3020;
+  --surface-2:    #4a3f2a;
+  --surface-3:    #5c5038;
+  --text:         #f5e6c8;
+  --text-2:       #ddc9a0;
+  --text-mute:    #a89070;
+  --text-faint:   #7a6548;
+  --rule:         rgba(210, 180, 100, 0.40);
+  --accent:       #f0c060;
+  --accent-soft:  rgba(240, 192, 96, 0.15);
+  --accent-glow:  rgba(240, 192, 96, 0.65);
+
+  /* ─── fonts (mono pairing) ─── */
+  --font-display-cn: "IBM Plex Sans", "Noto Sans SC", sans-serif;
+  --font-display-en: "IBM Plex Mono", "JetBrains Mono", monospace;
+  --font-body:       "IBM Plex Sans", "Noto Sans SC", sans-serif;
+  --font-mono:       "IBM Plex Mono", "JetBrains Mono", monospace;
+  --font-features:   "tnum", "zero", "ss01";
+
+  /* ─── motion: warmer, slightly slower ─── */
+  --dur-base:       600ms;
+  --dur-slow:       900ms;
+  --dur-cinematic:  1400ms;
+
+  /* ─── design identity: warm drafting ─── */
+  --r-card:        var(--r-flat);
+  --r-stage:       0;
+  --rule-w:        2px;
+  --rule-style:    solid;
+  --hero-num-font:    var(--font-mono);
+  --hero-num-style:   normal;
+  --hero-num-weight:  700;
+  --hero-num-track:   -0.02em;
+  --stage-pad-x:   120px;
+  --stage-pad-y:   90px;
+  --card-shadow:   inset 0 0 0 2px var(--rule);
+  --shadow-stage:
+    0 60px 160px rgba(20, 10, 0, 0.55),
+    0 0 0 1px rgba(210, 180, 100, 0.10);
+
+  /* ─── decoration: warm grid ─── */
+  --surface-pattern:
+    linear-gradient(rgba(210, 180, 100, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 180, 100, 0.06) 1px, transparent 1px),
+    linear-gradient(rgba(210, 180, 100, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 180, 100, 0.03) 1px, transparent 1px);
+  --surface-pattern-size: 240px 240px, 240px 240px, 60px 60px, 60px 60px;
+}
