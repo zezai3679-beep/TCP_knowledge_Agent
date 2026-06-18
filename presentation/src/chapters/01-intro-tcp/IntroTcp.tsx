@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import "./IntroTcp.css";
-import { narrations } from "./narrations";
 
 export default function IntroTcp({ step }: { step: number }) {
   const svgRef = useRef<SVGSVGElement>(null);

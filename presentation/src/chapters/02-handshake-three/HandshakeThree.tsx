@@ -1,5 +1,4 @@
 import "./HandshakeThree.css";
-import { narrations } from "./narrations";
 
 export default function HandshakeThree({ step }: { step: number }) {
   // ── step 0: cold open — title + hook ──

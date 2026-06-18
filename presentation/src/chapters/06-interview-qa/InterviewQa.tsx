@@ -1,5 +1,4 @@
 import "./InterviewQa.css";
-import { narrations } from "./narrations";
 
 export default function InterviewQa({ step }: { step: number }) {
   // ── step 0: Title ──
